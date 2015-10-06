@@ -8,6 +8,7 @@
 #define rServo_h
 
 #include "Arduino.h"
+#include "Wire\Wire.h"
 #include "Adafruit_PWMServoDriver\Adafruit_PWMServoDriver.h"
 
 
@@ -28,10 +29,11 @@ private:
 	//Returns the position the servo is moved to given the angle
 	int position(int angle);
 
-	int servoAddress;
-	int servoOffest;
-	int servoMin;
-	int servoMax;
+	//_variable for class
+	int _servoAddress;
+	int _servoOffest;
+	int _servoMin;
+	int _servoMax;
 	
 };
 
