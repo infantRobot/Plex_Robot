@@ -1,4 +1,6 @@
 #include "main.h"
+#include "rServo.h"
+
 
 
 void setup() {
