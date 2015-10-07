@@ -20,6 +20,9 @@ void Leg::init(int one, int two, int three, int four, int five, bool rightL)
 	thigh = rServo(servoFour, 0);
 	hip = rServo(servoFive, 0);
 
+	//Offset list is kept externaly and is read into the startup of the servoes.
+	adjLeg(offSetList[one], offSetList[two], offSetList[three], offSetList[four], offSetList[five]);
+
 }
 
 void Leg::leg(int a, int b, int c, int d, int e)
@@ -42,4 +45,11 @@ void Leg::leg(int a, int b, int c, int d, int e)
 	
 }
 
-
+void Leg::adjLeg(int a, int b, int c, int d, int e)
+{
+	ankle.adjCenter(a);
+	shin.adjCenter(b);
+	knee.adjCenter(c);
+	thigh.adjCenter(d);
+	hip.adjCenter(e);
+}
