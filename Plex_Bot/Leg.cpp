@@ -1,0 +1,36 @@
+// 
+// 
+// 
+
+#include "Leg.h"
+
+void Leg::init(int one, int two, int three, int four, int five, bool rightL)
+{
+	//Declare servo in order of foot to hip.
+	servoOne	= one;
+	servoTwo	= two;
+	servoThree	= three;
+	servoFour	= four;
+	servoFive	= five;
+	
+	//Initalize the parts of the leg foot to hip again
+	ankle = rServo(servoOne, 0);
+	shin = rServo(servoTwo, 0);
+	knee = rServo(servoThree, 0);
+	thigh = rServo(servoFour, 0);
+	hip = rServo(servoFive, 0);
+
+	
+
+}
+
+void Leg::leg(int a, int b, int c, int d, int e)
+{
+	ankle.move(a);
+	shin.move(b);
+	knee.move(c);
+	thigh.move(d);
+	hip.move(e);
+}
+
+
