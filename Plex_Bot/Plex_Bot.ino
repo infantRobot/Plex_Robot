@@ -1,5 +1,6 @@
 #include "Leg.h"
 #include "rServo.h"
+#include "routines.h"
 
 #include "Wire.h"
 #include "Adafruit_PWMServoDriver.h"
@@ -8,12 +9,7 @@ Adafruit_PWMServoDriver driver = Adafruit_PWMServoDriver(0x40);
 
 int offSetList[16] = { -6,7,-6,4,0,5,6,7,8,9,10,2,-2,-2,-9,-9 };
 
-rServo ankle = rServo(11, 2);
-
-struct node {
-	int x[5];
-	struct node *next;
-};
+int *routine[2] = { rWalk, lWalk };
 
 void setup() {
 
@@ -32,6 +28,11 @@ void setup() {
 }
 
 void loop() {
-	// put your main code here, to run repeatedly:
-	ankle.move(0);
+	for (int i = 0; i < SERVOS; i++)
+	{
+		for (int j = 0; j < LWALKSTEPS; j++)
+		{
+
+		}
+	}
 }
