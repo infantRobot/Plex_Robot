@@ -19,9 +19,11 @@ public:
 	//leg is the movement cure for the class. therfore moving the right leg looks like
 	//right.leg(#,#,#,#,#);
 	void leg(int a, int b, int c, int d, int e);
-
 	//return leg to all center
 	void center() { leg(0, 0, 0, 0, 0); }
+
+	//Adjust the offsets for the servos.
+
 
 	//rServo parts of the leg
 	rServo ankle;
@@ -36,6 +38,8 @@ private:
 	uint8_t servoThree;
 	uint8_t servoFour;
 	uint8_t servoFive;
+
+	bool isRightLeg;
 };
 
 #endif

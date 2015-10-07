@@ -6,7 +6,7 @@
 
 Adafruit_PWMServoDriver driver = Adafruit_PWMServoDriver(0x40);
 
-int offSet[16] = { -6,7,-6,4,0,5,6,7,8,9,10,2,-2,-2,-9,-9 };
+int offSetList[16] = { -6,7,-6,4,0,5,6,7,8,9,10,2,-2,-2,-9,-9 };
 
 rServo ankle = rServo(11, 2);
 

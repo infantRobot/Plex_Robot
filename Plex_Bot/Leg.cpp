@@ -20,17 +20,26 @@ void Leg::init(int one, int two, int three, int four, int five, bool rightL)
 	thigh = rServo(servoFour, 0);
 	hip = rServo(servoFive, 0);
 
-	
-
 }
 
 void Leg::leg(int a, int b, int c, int d, int e)
 {
-	ankle.move(a);
-	shin.move(b);
-	knee.move(c);
-	thigh.move(d);
-	hip.move(e);
+	if (isRightLeg) 
+	{
+		ankle.move(a);
+		shin.move(b);
+		knee.move(c);
+		thigh.move(d);
+		hip.move(e);
+	}
+	else {
+		ankle.move(-a);
+		shin.move(-b);
+		knee.move(-c);
+		thigh.move(-d);
+		hip.move(-e);
+	}
+	
 }
 
 
