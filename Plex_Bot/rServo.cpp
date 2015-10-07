@@ -16,7 +16,7 @@ rServo::rServo(int ServoNumber, int Offset)
 //Moves the servo up and down from 0. -90 would is down and 90 is up, all from netrual.
 void rServo::move(int pos)
 {
-	driver.setPWM(pos, 0, (short) _servoAddress);
+	//driver.setPWM(pos, 0, (short) _servoAddress);
 }
 
 //Used to adjust the center of the servo and store that value

@@ -15,12 +15,8 @@
   BSD license, all text above must be included in any redistribution
  ****************************************************/
 
-#include "Adafruit_PWMServoDriver.h"
-
-#ifndef Wire_h
-#define Wire_h
-#endif
-
+#include <Adafruit_PWMServoDriver.h>
+#include <Wire.h>
 #if defined(__AVR__)
  #define WIRE Wire
 #elif defined(CORE_TEENSY) // Teensy boards
@@ -47,6 +43,7 @@ void Adafruit_PWMServoDriver::reset(void) {
 }
 
 void Adafruit_PWMServoDriver::setPWMFreq(float freq) {
+
   //Serial.print("Attempting to set freq ");
   //Serial.println(freq);
   freq *= 0.9;  // Correct for overshoot in the frequency setting (see issue #11).
@@ -54,16 +51,13 @@ void Adafruit_PWMServoDriver::setPWMFreq(float freq) {
   prescaleval /= 4096;
   prescaleval /= freq;
   prescaleval -= 1;
-  /*
-
   if (ENABLE_DEBUG_OUTPUT) {
-  Serial.print("Estimated pre-scale: "); Serial.println(prescaleval);
+    Serial.print("Estimated pre-scale: "); Serial.println(prescaleval);
+  }
+  uint8_t prescale = floor(prescaleval + 0.5);
   if (ENABLE_DEBUG_OUTPUT) {
     Serial.print("Final pre-scale: "); Serial.println(prescale);
   }
-  }
-  */
-  uint8_t prescale = floor(prescaleval + 0.5);
   
   uint8_t oldmode = read8(PCA9685_MODE1);
   uint8_t newmode = (oldmode&0x7F) | 0x10; // sleep
@@ -126,6 +120,7 @@ void Adafruit_PWMServoDriver::setPin(uint8_t num, uint16_t val, bool invert)
 uint8_t Adafruit_PWMServoDriver::read8(uint8_t addr) {
   WIRE.beginTransmission(_i2caddr);
   WIRE.write(addr);
+
   WIRE.endTransmission();
 
   WIRE.requestFrom((uint8_t)_i2caddr, (uint8_t)1);

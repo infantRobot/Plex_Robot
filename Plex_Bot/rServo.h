@@ -1,5 +1,3 @@
-#include <Wire.h>
-
 /*
 ** Base Level Servo control
 ** r for Robot not to be confused with arduio servo library
@@ -9,9 +7,10 @@
 #ifndef rServo_h
 #define rServo_h
 
-#include "Arduino.h"
+#include <Arduino.h>
 
-#include "Adafruit_PWMServoDriver\Adafruit_PWMServoDriver.h"
+#include "Wire.h"
+#include "Adafruit_PWMServoDriver.h"
 
 extern Adafruit_PWMServoDriver driver;
 
