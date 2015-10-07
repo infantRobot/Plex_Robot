@@ -14,14 +14,11 @@ void Leg::init(int one, int two, int three, int four, int five, bool rightL)
 	servoFive	= five;
 	
 	//Initalize the parts of the leg foot to hip again
-	ankle = rServo(servoOne, 0);
-	shin = rServo(servoTwo, 0);
-	knee = rServo(servoThree, 0);
-	thigh = rServo(servoFour, 0);
-	hip = rServo(servoFive, 0);
-
-	//Offset list is kept externaly and is read into the startup of the servoes.
-	adjLeg(offSetList[one], offSetList[two], offSetList[three], offSetList[four], offSetList[five]);
+	ankle = rServo(servoOne, offSetList[one]);
+	shin = rServo(servoTwo, offSetList[two]);
+	knee = rServo(servoThree, offSetList[three]);
+	thigh = rServo(servoFour, offSetList[four]);
+	hip = rServo(servoFive, offSetList[five]);
 
 }
 
