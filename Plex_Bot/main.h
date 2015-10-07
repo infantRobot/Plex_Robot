@@ -1,15 +1,5 @@
-#ifndef main.h
-#define	main.h
+#ifndef main_h
+#define	main_h
 
-//Include Arduino library for further use
-#include "Arduino.h"
-
-class main
-{
-public:
-	
-private:
-
-};
 
 #endif

@@ -1,3 +1,5 @@
+#include <Wire.h>
+
 /*
 ** Base Level Servo control
 ** r for Robot not to be confused with arduio servo library
@@ -8,8 +10,10 @@
 #define rServo_h
 
 #include "Arduino.h"
-#include "Wire\Wire.h"
+
 #include "Adafruit_PWMServoDriver\Adafruit_PWMServoDriver.h"
+
+extern Adafruit_PWMServoDriver driver;
 
 
 class rServo
@@ -24,10 +28,11 @@ public:
 	void adjCenter(int r);		
 	//Adjust the servo min and max of the servo timing
 	void adjTiming(int min, int max);
-	
-private:
+
 	//Returns the position the servo is moved to given the angle
 	int position(int angle);
+	
+private:
 
 	//_variable for class
 	int _servoAddress;
