@@ -18,24 +18,27 @@ Leg::Leg(int address[5] , bool rightL)
 	thigh.attach(servoAddresses[3], offSetList[servoAddresses[3]]);
 	hip.attach(servoAddresses[4], offSetList[servoAddresses[4]]);
 
+	//set the Right leg status
+	isRightLeg = rightL;
+
 }
 
 void Leg::leg(int move[5])
 {
 	if (isRightLeg) 
 	{
-		ankle.move(move[0]);
-		shin.move(move[1]);
-		knee.move(move[2]);
-		thigh.move(move[3]);
-		hip.move(move[4]);
+		ankle.move(constrain(-move[0],-25,15));
+		shin.move(constrain(-move[1], -40,80));
+		knee.move(constrain(-move[2], -40, 80));
+		thigh.move(constrain(move[3], -40, 80));
+		hip.move(constrain(move[4], -15, 70));
 	}
 	else {
-		ankle.move(-move[0]);
-		shin.move(-move[1]);
-		knee.move(-move[2]);
-		thigh.move(-move[3]);
-		hip.move(-move[4]);
+		ankle.move(constrain(move[0], -25, 15));
+		shin.move(constrain(move[1], -40, 80));
+		knee.move(constrain(move[2], -40, 80));
+		thigh.move(constrain(-move[3], -40, 80));
+		hip.move(constrain(-move[4], -15, 70));
 	}
 	
 }
