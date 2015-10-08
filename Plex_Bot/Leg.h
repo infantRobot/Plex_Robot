@@ -12,6 +12,8 @@
 
 //Read by the init funciton of the leg and offsets are automatic
 extern int offSetList[16];
+//Automatic reads in the hard leg limits
+extern int hardLegLimits[10];
 
 class Leg
 {

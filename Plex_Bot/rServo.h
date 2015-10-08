@@ -31,6 +31,8 @@ public:
 
 	//Used to adjust the center of the servo and store that value
 	void adjCenter(int r);		
+	//Used to set hard limits that the servo should not go past 
+	void adjLimit(int min, int max);
 	//Adjust the servo min and max of the servo timing
 	void adjTiming(int min, int max);
 
@@ -39,12 +41,16 @@ public:
 
 	
 private:
+	//Keeps the servo inside the hard limits
+	int limitPos(int angle);
 
 	//_variable for class
 	short _servoAddress;
 	int _servoOffest; //Positive for a positive offSet
-	int _servoMin = 115;
-	int _servoMax = 560;
+	int _servoMinTiming = 115;
+	int _servoMaxTiming = 560;
+	int _servoMinPos = -90;
+	int _servoMaxPos = 90;
 	
 };
 
