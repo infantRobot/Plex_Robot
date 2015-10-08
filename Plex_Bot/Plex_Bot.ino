@@ -5,6 +5,9 @@
 #include "Wire.h"
 #include "Adafruit_PWMServoDriver.h"
 
+#define RIGHT 0
+#define LEFT 1
+
 Adafruit_PWMServoDriver driver = Adafruit_PWMServoDriver(0x40);
 
 //Makes the servo line up better 
@@ -47,18 +50,27 @@ void setup() {
 	int tester[5] = { 15, -30, -25, 15, 15};
 	int tester2[5] = { 15, -30, -25, 15, 15 };
 
-	right.leg(tester);
-	left.leg(tester2);
-	delay(1000);
+	right.leg(zero);
+	left.leg(zero);
 }
 
-void loop() {
-	/*for (int i = 0; i < SERVOS; i++)
-	{
-		for (int j = 0; j < LWALKSTEPS; j++)
-		{
-			right.leg(*(routine[0] + i*j), *(routine[0] + i*j), *(routine[0] + i*j), *(routine[0] + i*j), *(routine[0] + i*j));
+void loop() 
+{
+	int rLegTemp[5];
+	int lLegTemp[5];
 
-		}
-	}*/
+	for (int i = 0; i < 3; i++)
+	{
+		for (int j = 0; j < 5; j++)
+		{
+			//right leg
+			rLegTemp[j] = rWalk[i*SERVOS + j];
+			lLegTemp[j] = rWalk[i*SERVOS + j + 5];
+
+ 		}
+		right.leg(rLegTemp);
+		left.leg(lLegTemp);
+
+		delay(3000);
+	}
 }
