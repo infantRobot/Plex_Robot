@@ -17,7 +17,7 @@ class Leg
 {
 public:
 	//Declare servo address and create rServo objects for leg
-	void init(int one, int two, int three, int four, int five, bool rightL);
+	Leg(int one, int two, int three, int four, int five, bool rightL);
 
 	//leg is the movement cure for the class. therfore moving the right leg looks like
 	//right.leg(#,#,#,#,#);

@@ -4,7 +4,7 @@
 
 #include "Leg.h"
 
-void Leg::init(int one, int two, int three, int four, int five, bool rightL)
+Leg::Leg(int one, int two, int three, int four, int five, bool rightL)
 {
 	//Declare servo in order of foot to hip.
 	servoOne	= one;
@@ -14,11 +14,11 @@ void Leg::init(int one, int two, int three, int four, int five, bool rightL)
 	servoFive	= five;
 	
 	//Initalize the parts of the leg foot to hip again
-	ankle = rServo(servoOne, offSetList[one]);
-	shin = rServo(servoTwo, offSetList[two]);
-	knee = rServo(servoThree, offSetList[three]);
-	thigh = rServo(servoFour, offSetList[four]);
-	hip = rServo(servoFive, offSetList[five]);
+	ankle = rServo(servoOne, 0);
+	shin = rServo(servoTwo, 0);
+	knee = rServo(servoThree, 0);
+	thigh = rServo(servoFour, 0);
+	hip = rServo(servoFive, 0);
 
 }
 
