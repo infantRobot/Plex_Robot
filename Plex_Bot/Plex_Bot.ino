@@ -7,13 +7,16 @@
 
 Adafruit_PWMServoDriver driver = Adafruit_PWMServoDriver(0x40);
 
+//Makes the servo line up better 
 int offSetList[16] = { -6,7,-6,4,0,5,6,7,8,9,10,2,-2,-2,-9,-9 };
 
 //{footMin, footMax, shinMin, shingMax, ....., hipMin, hipMax}
 int hardLegLimits[5 * 2] = { -25, 15, -40, 80, -40, 80, -40, 80, -15, 70 };
 
+//Pointer to the two walking routines for each leg
 int *routine[2] = { rWalk, lWalk };
 
+//Useful for setting leg to center
 int zero[5] = { 0 };
 
 /*
