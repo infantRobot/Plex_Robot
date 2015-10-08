@@ -18,8 +18,11 @@ extern Adafruit_PWMServoDriver driver;
 class rServo
 {
 public:
+	//Contructor
+	rServo();
+
 	//Attach servos no need with the control board but still declares position
-	rServo(int ServoNumber, int Offset = 0);
+	void attach(int ServoNumber, int Offset = 0);
 
 	//Moves the servo up and down from 0. -90 would is down and 90 is up, all from netrual.
 	void move(int pos);

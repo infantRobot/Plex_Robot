@@ -1,8 +1,12 @@
 #include "rServo.h"
 
+rServo::rServo(void)
+{
+	//intanciate object
+}
 
 //Attach servos no need with the control board but still declares position
-rServo::rServo(int ServoNumber, int Offset)
+void rServo::attach(int ServoNumber, int Offset)
 {
 	//declare starting place in servo chain
 	_servoAddress = ServoNumber;

@@ -11,9 +11,18 @@ int offSetList[16] = { -6,7,-6,4,0,5,6,7,8,9,10,2,-2,-2,-9,-9 };
 
 int *routine[2] = { rWalk, lWalk };
 
+int zero[5] = { 0 };
+
+/*
+ankle constraint 
+*/
+
 //Leg is init. leg moves the servoes
-Leg right = Leg(0, 1, 2, 3, 4, true);
-Leg left = Leg(15, 14, 13, 12, 11, false);
+int rLeg[5] = { 0, 1, 2, 3, 4 };
+int lLeg[5] = { 15, 14, 13, 12, 11 };
+
+Leg right = Leg(rLeg, true);
+Leg left = Leg(lLeg, false);
 
 void setup() {
 
@@ -28,20 +37,20 @@ void setup() {
 	//initiate the 16 Channel shield
 	driver.begin();
 	driver.setPWMFreq(60);
+	
+	int tester[5] = { 25,0, 0, 0, 0 };
 
-	right.leg(0, 0, 0, 0, 0);
-	left.leg(0, 0, 0, 0, 0);
-
+	right.leg(tester);
 	delay(1000);
 }
 
 void loop() {
-	for (int i = 0; i < SERVOS; i++)
+	/*for (int i = 0; i < SERVOS; i++)
 	{
 		for (int j = 0; j < LWALKSTEPS; j++)
 		{
 			right.leg(*(routine[0] + i*j), *(routine[0] + i*j), *(routine[0] + i*j), *(routine[0] + i*j), *(routine[0] + i*j));
 
 		}
-	}
+	}*/
 }

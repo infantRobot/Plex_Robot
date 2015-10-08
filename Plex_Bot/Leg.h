@@ -17,14 +17,14 @@ class Leg
 {
 public:
 	//Declare servo address and create rServo objects for leg
-	Leg(int one, int two, int three, int four, int five, bool rightL);
+	Leg(int address[5], bool rightL);
 
 	//leg is the movement cure for the class. therfore moving the right leg looks like
-	//right.leg(#,#,#,#,#);
-	void leg(int a, int b, int c, int d, int e);
+	//right.leg(int move[5]);
+	void leg(int move[5]);
 
 	//return leg to all center
-	void center() { leg(0, 0, 0, 0, 0); }
+	//void center() { leg(int zero[5] = { 0 }); }
 
 
 	//rServo parts of the leg
@@ -38,13 +38,9 @@ private:
 
 	//Adjust the offsets for the servos. Only accesed at statup.
 	//If you want each servo is public so you could ajust them one by one.
-	void adjLeg(int a, int b, int c, int d, int e);
+	void adjLeg(int adj[5]);
 
-	uint8_t servoOne;
-	uint8_t servoTwo;
-	uint8_t servoThree;
-	uint8_t servoFour;
-	uint8_t servoFive;
+	int servoAddresses[5];
 
 	bool isRightLeg;
 };
