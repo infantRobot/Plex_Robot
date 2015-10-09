@@ -59,7 +59,7 @@ void loop()
 	int rLegTemp[5];
 	int lLegTemp[5];
 
-	for (int i = 0; i < 3; i++)
+	for (int i = 0; i < 7; i++)
 	{
 		for (int j = 0; j < 5; j++)
 		{
@@ -71,6 +71,6 @@ void loop()
 		right.leg(rLegTemp);
 		left.leg(lLegTemp);
 
-		delay(3000);
+		delay(500);
 	}
 }
