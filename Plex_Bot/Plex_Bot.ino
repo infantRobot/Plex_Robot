@@ -1,9 +1,13 @@
+#include "Remote_Control.h"
 #include "Leg.h"
 #include "rServo.h"
 #include "routines.h"
+#include "Remote_Control.h"
 
 #include "Wire.h"
 #include "Adafruit_PWMServoDriver.h"
+
+
 
 #define RIGHT 0
 #define LEFT 1
@@ -33,6 +37,7 @@ int rLeg[5] = { 15, 14, 13, 12, 11 };
 Leg right = Leg(rLeg, true);
 Leg left = Leg(lLeg, false);
 
+
 void setup() {
 
 	//Lets me know the code has started
@@ -47,30 +52,51 @@ void setup() {
 	driver.begin();
 	driver.setPWMFreq(60);
 
-	int tester[5] = { 15, -30, -25, 15, 15};
-	int tester2[5] = { 15, -30, -25, 15, 15 };
+	//int tester[5] = { 15, -30, -25, 15, 15};
+	//int tester2[5] = { 15, -30, -25, 15, 15 };
 
 	right.leg(zero);
 	left.leg(zero);
+	delay(1000);
+
+	EstablishConnection();
 }
 
 void loop() 
 {
-	int rLegTemp[5];
-	int lLegTemp[5];
-
+	int rLegTemp[5] = { 0 };
+	int lLegTemp[5] = { 0 };
+	
+	/*
 	for (int i = 0; i < 7; i++)
 	{
 		for (int j = 0; j < 5; j++)
 		{
 			//right leg
-			rLegTemp[j] = rWalk[i*SERVOS + j];
-			lLegTemp[j] = rWalk[i*SERVOS + j + 5];
-
+			//rLegTemp[j] = rWalk[i*SERVOS + j];
+			//lLegTemp[j] = rWalk[i*SERVOS + j + 5];
+			rLegTemp[j] = 0;
+			lLegTemp[j] = 0;
+			
  		}
+
 		right.leg(rLegTemp);
 		left.leg(lLegTemp);
 
 		delay(500);
+	}*/
+	while (true) {
+		// check to see if there are enough bytes on the serial line for a message
+		if (Serial.available() >= messageLength)
+			// read the incoming message
+			if (ReadMessage(rLegTemp, lLegTemp))
+				// respond to the computer that is controlling the robot
+				SendResponse();
+
+
+		right.leg(rLegTemp);
+		left.leg(lLegTemp);
 	}
+	
+	
 }
