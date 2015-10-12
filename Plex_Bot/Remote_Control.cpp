@@ -73,7 +73,7 @@ bool ReadMessage(int rleg[5], int lleg[5])
 			if (value > 6000)
 			{
 				value = 59536 - value;
-				value = map(value, -100, -5900, -5900, -100)-100; 
+				value = map(value, -100, -5900, -5900, -100)-200; 
 			}
 				
 			lcd.setCursor(0, 0);

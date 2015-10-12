@@ -9,7 +9,7 @@
 
 #include <Arduino.h>
 
-#include "Wire.h"
+#include <Wire.h>
 #include "Adafruit_PWMServoDriver.h"
 
 extern Adafruit_PWMServoDriver driver;
