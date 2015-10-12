@@ -22,7 +22,7 @@ public:
 	rServo();
 
 	//Attach servos no need with the control board but still declares position
-	void attach(int ServoNumber, int Offset = 0);
+	void attach(int ServoNumber, int Offset = 0, int _min = -90, int _max = 90);
 
 	//Moves the servo up and down from 0. -90 would is down and 90 is up, all from netrual.
 	void move(int pos);

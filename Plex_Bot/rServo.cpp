@@ -6,12 +6,14 @@ rServo::rServo(void)
 }
 
 //Attach servos no need with the control board but still declares position
-void rServo::attach(int ServoNumber, int Offset)
+void rServo::attach(int ServoNumber, int Offset, int _min, int _max)
 {
 	//declare starting place in servo chain
 	_servoAddress = ServoNumber;
 	//asign starting position for servo and move there
 	adjCenter(Offset);
+	//Adjusts the maximum and minimum travel of the servos
+	adjLimit(_min, _max);
 }
 
 
@@ -31,12 +33,11 @@ void rServo::adjCenter(int r)
 	_servoOffest = r;
 }
 
+//Change the limiting angles for the servo offset
 void rServo::adjLimit(int min, int max)
 {
-	if (min < max) {
-		_servoMinPos = min;
-		_servoMaxPos = max;
-	}
+	_servoMinPos = min;
+	_servoMaxPos = max;
 }
 
 //Adjust the servo min and max of the servo timing
@@ -51,15 +52,17 @@ int rServo::position(int angle)
 {
 	return map(angle, -90, 90, _servoMinTiming, _servoMaxTiming);}
 
+
+//This takes in the adjusted position of the servo 
+//and returns the limit if the limit is being exceeded
 int rServo::limitPos(int angle)
 {
-	int newAngle = angle;
+	
 	if (angle < _servoMinPos) {
-		newAngle = _servoMinPos;
+		return _servoMinPos;
 	}
 	if (angle > _servoMaxPos) {
-		newAngle = _servoMaxPos;
+		return _servoMaxPos;
 	}
-	
-	return newAngle;
+	return angle;
 }
