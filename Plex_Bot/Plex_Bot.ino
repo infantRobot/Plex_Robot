@@ -3,6 +3,7 @@
 #include "rServo.h"
 #include "routines.h"
 #include "Remote_Control.h"
+#include <LiquidCrystal\LiquidCrystal.h>
 
 #include "Wire.h"
 #include "Adafruit_PWMServoDriver.h"
@@ -12,7 +13,19 @@
 #define RIGHT 0
 #define LEFT 1
 
+#define RS_PIN 24
+#define ENABLE_PIN 25
+#define DB4_PIN 26
+#define DB5_PIN 27
+#define DB6_PIN 28
+#define DB7_PIN 29
+
+
+
+
 Adafruit_PWMServoDriver driver = Adafruit_PWMServoDriver(0x40);
+
+LiquidCrystal lcd(RS_PIN, ENABLE_PIN, DB4_PIN, DB5_PIN, DB6_PIN, DB7_PIN);
 
 //Makes the servo line up better 
 int offSetList[16] = { -6,7,-6,4,0,5,6,7,8,9,10,2,-2,-2,-9,-9 };
@@ -51,6 +64,10 @@ void setup() {
 	//initiate the 16 Channel shield
 	driver.begin();
 	driver.setPWMFreq(60);
+
+	//Initiate LCD
+	lcd.begin(8, 2);
+	lcd.print("PLEX BOT");
 
 	//int tester[5] = { 15, -30, -25, 15, 15};
 	//int tester2[5] = { 15, -30, -25, 15, 15 };
@@ -96,6 +113,11 @@ void loop()
 
 		right.leg(rLegTemp);
 		left.leg(lLegTemp);
+
+		lcd.setCursor(0, 0);
+		lcd.print("        ");
+		lcd.setCursor(0, 1);
+		lcd.print("        ");
 	}
 	
 	

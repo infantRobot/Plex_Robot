@@ -2,8 +2,11 @@
 // 
 // 
 #include "Remote_Control.h"
+#include "LiquidCrystal.h"
 
+#define B0111111111111111 32767
 
+extern LiquidCrystal lcd;
 
 void EstablishConnection()
 {
@@ -66,11 +69,18 @@ bool ReadMessage(int rleg[5], int lleg[5])
 			// storage of 2 significant digits(i.e. the value can be from -60.00 to 60.00 and every value in between).
 			// Also remember that the servos have a range of 120 degrees. The angle is written in positions
 			// which range from a minimum of 800 (-60 degrees) and go to a maximum of 2200 (60 degrees)
-			int value = word(inputBuffer[servo * 2 + 1 + 3], inputBuffer[servo * 2 + 0 + 3]);
+			int value = word(inputBuffer[0 * 2 + 1 + 3], inputBuffer[0 * 2 + 0 + 3]);
+			if (value > 6000)
+			{
+				value = 59536 - value;
+				value = map(value, -100, -5900, -5900, -100)-100; 
+			}
+				
+			lcd.setCursor(0, 0);
+			lcd.print(value);
 
-			Serial.println(value);
 
-
+			//My system only has 5 servos on the legs. Skip the hip and move to left leg
 			if (servo != 5) {
 				if (servo > 5) {
 					lleg[servo - 6] = map(value, -6000, 6000, -60, 60);
@@ -84,13 +94,13 @@ bool ReadMessage(int rleg[5], int lleg[5])
 
 			             // tell servo to go to position in variable 'pos' 
 		}
-
 		// a valid messgae was received    
 		return true;
 	}
 	else
 		// the message wasn't valid
 		return false;
+
 }
 
 
