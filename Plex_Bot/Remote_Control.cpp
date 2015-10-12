@@ -91,8 +91,6 @@ bool ReadMessage(int rleg[5], int lleg[5])
 				}
 			}
 				
-
-			             // tell servo to go to position in variable 'pos' 
 		}
 		// a valid messgae was received    
 		return true;
