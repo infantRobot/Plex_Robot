@@ -4,6 +4,8 @@
 
 #include "Leg.h"
 
+//Initializing call. Get offsets, limits, addresses.
+//Also inverts direction of the servos that need it.
 Leg::Leg(int address[5] , bool rightL)
 {
 	//set the Right leg status
@@ -11,13 +13,25 @@ Leg::Leg(int address[5] , bool rightL)
 
 	int limitTemp[10];
 	
+	//Get the servo array adress
+	copy(_servoAddresses, _servoAddresses + SERVOS/2, address);
+
+	//copy the limit positions of the servos
+	if (rightL) 
+	{
+		copy(limitTemp, limitTemp + SERVOS, rightOffSetList);
+	}
+	else {
+		copy(limitTemp, limitTemp + SERVOS, leftOffSetList);
+	}
+	
+
+	/*
 	for (int i = 0; i < 5; i++) {
 		//Declare servo in order of foot to hip.
 		servoAddresses[i] = address[i];
-
-		
 	}	
-
+	
 	for (int i = 0; i < 10; i++) {
 		//create limit array
 		if (_isRightLeg) {
@@ -27,12 +41,13 @@ Leg::Leg(int address[5] , bool rightL)
 			limitTemp[i] = leftOffSetList[i];
 		}
 	}
+	*/
 	//Initalize the parts of the leg foot to hip again
-	ankle.attach(servoAddresses[0], offSetList[servoAddresses[0]],limitTemp[0],limitTemp[1]);
-	shin.attach(servoAddresses[1], offSetList[servoAddresses[1]], limitTemp[2], limitTemp[3]);
-	knee.attach(servoAddresses[2], offSetList[servoAddresses[2]], limitTemp[4], limitTemp[5]);
-	thigh.attach(servoAddresses[3], offSetList[servoAddresses[3]], limitTemp[6], limitTemp[7]);
-	hip.attach(servoAddresses[4], offSetList[servoAddresses[4]], limitTemp[8], limitTemp[9]);
+	ankle.attach(_servoAddresses[0], offSetList[_servoAddresses[0]],limitTemp[0],limitTemp[1]);
+	shin.attach(_servoAddresses[1], offSetList[_servoAddresses[1]], limitTemp[2], limitTemp[3]);
+	knee.attach(_servoAddresses[2], offSetList[_servoAddresses[2]], limitTemp[4], limitTemp[5]);
+	thigh.attach(_servoAddresses[3], offSetList[_servoAddresses[3]], limitTemp[6], limitTemp[7]);
+	hip.attach(_servoAddresses[4], offSetList[_servoAddresses[4]], limitTemp[8], limitTemp[9]);
 
 
 
@@ -50,6 +65,7 @@ Leg::Leg(int address[5] , bool rightL)
 
 
 }
+
 
 void Leg::leg(int move[5])
 {

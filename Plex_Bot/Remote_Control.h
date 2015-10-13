@@ -8,6 +8,8 @@
 #else
 	#include "WProgram.h"
 #endif
+
+
 const int numberOfServos = 12;
 const int messageLength = 3 + numberOfServos * 2;
 
