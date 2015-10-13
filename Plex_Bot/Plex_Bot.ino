@@ -33,8 +33,8 @@ int offSetList[16] = { -6,7,-6,4,0,5,6,7,8,9,10,2,-2,-2,-9,-9 };
 //{footMin, footMax, shinMin, shingMax, ....., hipMin, hipMax}
 int hardLegLimits[5 * 2] = { -25, 15, -40, 80, -40, 80, -40, 80, -15, 70 };
 
-int rightOffSetList[10] = { -25, 15, -10, 10, -40, 80, -40, 80, -15, 70 };
-int leftOffSetList[10] = { -25, 15, -40, 80, -40, 80, -40, 80, -15, 70 };
+int rightOffSetList[10] = { -25, 15, -40, 80, -80, 45, -40, 80, -15, 70 };
+int leftOffSetList[10] = { -25, 15, -40, 80, -80, 45, -40, 80, -15, 70 };
 
 //Pointer to the two walking routines for each leg
 int *routine[2] = { rWalk, lWalk };
@@ -84,27 +84,14 @@ void setup() {
 
 void loop() 
 {
+	lcd.setCursor(0, 0);
+	lcd.print("Welcome ");
+	lcd.setCursor(0, 1);
+	lcd.print("User");
+
 	int rLegTemp[5] = { 0 };
 	int lLegTemp[5] = { 0 };
 	
-	/*
-	for (int i = 0; i < 7; i++)
-	{
-		for (int j = 0; j < 5; j++)
-		{
-			//right leg
-			//rLegTemp[j] = rWalk[i*SERVOS + j];
-			//lLegTemp[j] = rWalk[i*SERVOS + j + 5];
-			rLegTemp[j] = 0;
-			lLegTemp[j] = 0;
-			
- 		}
-
-		right.leg(rLegTemp);
-		left.leg(lLegTemp);
-
-		delay(500);
-	}*/
 	while (true) {
 		// check to see if there are enough bytes on the serial line for a message
 		if (Serial.available() >= messageLength)
@@ -117,10 +104,6 @@ void loop()
 		right.leg(rLegTemp);
 		left.leg(lLegTemp);
 
-		lcd.setCursor(0, 0);
-		lcd.print("        ");
-		lcd.setCursor(0, 1);
-		lcd.print("        ");
 	}
 	
 	

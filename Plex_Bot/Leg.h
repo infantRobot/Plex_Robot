@@ -45,7 +45,7 @@ private:
 
 	int servoAddresses[5];
 
-	bool isRightLeg;
+	bool _isRightLeg;
 };
 
 #endif

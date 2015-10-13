@@ -6,6 +6,8 @@
 
 Leg::Leg(int address[5] , bool rightL)
 {
+	//set the Right leg status
+	_isRightLeg = rightL;
 
 	int limitTemp[10];
 	
@@ -18,7 +20,7 @@ Leg::Leg(int address[5] , bool rightL)
 
 	for (int i = 0; i < 10; i++) {
 		//create limit array
-		if (isRightLeg) {
+		if (_isRightLeg) {
 			limitTemp[i] = rightOffSetList[i];
 		}
 		else {
@@ -32,28 +34,30 @@ Leg::Leg(int address[5] , bool rightL)
 	thigh.attach(servoAddresses[3], offSetList[servoAddresses[3]], limitTemp[6], limitTemp[7]);
 	hip.attach(servoAddresses[4], offSetList[servoAddresses[4]], limitTemp[8], limitTemp[9]);
 
-	//set the Right leg status
-	isRightLeg = rightL;
+
+
+	//inverts the servos conditionaly on the leg
+	if (_isRightLeg)
+	{
+		ankle.reverseDirection();
+		shin.reverseDirection();
+		knee.reverseDirection();
+	}
+	else {
+		thigh.reverseDirection();
+		hip.reverseDirection();
+	}
+
 
 }
 
 void Leg::leg(int move[5])
 {
-	if (isRightLeg) 
-	{
-		ankle.move(-move[0]);
-		shin.move(-move[1]);
-		knee.move(-move[2]);
-		thigh.move(move[3]);
-		hip.move(move[4]);
-	}
-	else {
-		ankle.move(move[0]);
-		shin.move(move[1]);
-		knee.move(move[2]);
-		thigh.move(-move[3]);
-		hip.move(-move[4]);
-	}
+	ankle.move(move[0]);
+	shin.move(move[1]);
+	knee.move(move[2]);
+	thigh.move(move[3]);
+	hip.move(move[4]);
 	
 }
 

@@ -75,9 +75,6 @@ bool ReadMessage(int rleg[5], int lleg[5])
 				value = 59536 - value;
 				value = map(value, -100, -5900, -5900, -100); 
 			}
-				
-			lcd.setCursor(0, 0);
-			lcd.print(value);
 
 
 			//My system only has 5 servos on the legs. Skip the hip and move to left leg
