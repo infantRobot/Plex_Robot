@@ -21,17 +21,10 @@ void rServo::attach(int ServoNumber, int Offset, int _min, int _max)
 void rServo::move(int pos)
 {
 	//Limit the angle before it gets to the funtion
-	pos = limitPos(pos);
-
-	//inverse the angle
-	if (_reverseDirection)
-	{
-		pos = -pos;
-	}
-	
+	int newPos = limitPos(pos + _servoOffest);
 	
 	//Add the value of servoOffset to the position. 
-	driver.setPWM(_servoAddress, 0, position(pos + _servoOffest));
+	driver.setPWM(_servoAddress, 0, position(newPos));
 }
 
 //Used to adjust the center of the servo and store that value
@@ -72,10 +65,4 @@ int rServo::limitPos(int angle)
 		return _servoMaxPos;
 	}
 	return angle;
-}
-
-//Inverse the motion direction for the servo
-void rServo::reverseDirection()
-{
-	_reverseDirection = true;
 }

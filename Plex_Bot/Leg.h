@@ -51,7 +51,7 @@ private:
 
 	int _servoAddresses[5];
 
-	bool _isRightLeg;
+	bool isRightLeg;
 };
 
 #endif

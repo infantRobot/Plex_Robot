@@ -35,8 +35,6 @@ public:
 	void adjLimit(int min, int max);
 	//Adjust the servo min and max of the servo timing
 	void adjTiming(int min, int max);
-	//Inverse the direction of the called servo
-	void reverseDirection();
 
 	//Returns the position the servo is moved to given the angle
 	int position(int angle);
@@ -49,7 +47,6 @@ private:
 	//_variable for class
 	short _servoAddress;
 	int _servoOffest; //Positive for a positive offSet
-	bool _reverseDirection = false;
 	int _servoMinTiming = 115;
 	int _servoMaxTiming = 560;
 	int _servoMinPos = -90;

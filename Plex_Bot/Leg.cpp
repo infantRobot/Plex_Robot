@@ -8,8 +8,6 @@
 //Also inverts direction of the servos that need it.
 Leg::Leg(int address[5] , bool rightL)
 {
-	//set the Right leg status
-	_isRightLeg = rightL;
 
 	int limitTemp[10];
 	
@@ -34,7 +32,7 @@ Leg::Leg(int address[5] , bool rightL)
 	
 	for (int i = 0; i < 10; i++) {
 		//create limit array
-		if (_isRightLeg) {
+		if (isRightLeg) {
 			limitTemp[i] = rightOffSetList[i];
 		}
 		else {
@@ -49,19 +47,29 @@ Leg::Leg(int address[5] , bool rightL)
 	thigh.attach(_servoAddresses[3], offSetList[_servoAddresses[3]], limitTemp[6], limitTemp[7]);
 	hip.attach(_servoAddresses[4], offSetList[_servoAddresses[4]], limitTemp[8], limitTemp[9]);
 
+	//set the Right leg status
+	isRightLeg = rightL;
 
+}
 
-	//inverts the servos conditionaly on the leg
-	if (_isRightLeg)
+void Leg::leg(int move[5])
+{
+	if (isRightLeg) 
 	{
-		ankle.reverseDirection();
-		shin.reverseDirection();
-		knee.reverseDirection();
+		ankle.move(-move[0]);
+		shin.move(-move[1]);
+		knee.move(-move[2]);
+		thigh.move(move[3]);
+		hip.move(move[4]);
 	}
 	else {
-		thigh.reverseDirection();
-		hip.reverseDirection();
+		ankle.move(move[0]);
+		shin.move(move[1]);
+		knee.move(move[2]);
+		thigh.move(-move[3]);
+		hip.move(-move[4]);
 	}
+<<<<<<< HEAD
 
 
 }
@@ -74,6 +82,8 @@ void Leg::leg(int move[5])
 	knee.move(move[2]);
 	thigh.move(move[3]);
 	hip.move(move[4]);
+=======
+>>>>>>> parent of 8065548... Fixed limit position and servo offest bug! AM
 	
 }
 
