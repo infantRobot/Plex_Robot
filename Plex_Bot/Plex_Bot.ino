@@ -1,7 +1,7 @@
-#include "Functions.h"
 #include "Remote_Control.h"
 #include "Leg.h"
 #include "rServo.h"
+#include "routines.h"
 #include "Remote_Control.h"
 #include <LiquidCrystal\LiquidCrystal.h>
 
@@ -36,16 +36,22 @@ int hardLegLimits[5 * 2] = { -25, 15, -40, 80, -40, 80, -40, 80, -15, 70 };
 int rightOffSetList[10] = { -25, 15, -40, 80, -80, 45, -40, 80, -15, 70 };
 int leftOffSetList[10] = { -25, 15, -40, 80, -80, 45, -40, 80, -15, 70 };
 
+//Pointer to the two walking routines for each leg
+int *routine[2] = { rWalk, lWalk };
+
 //Useful for setting leg to center
 int ZERO_A[5] = { 0 };
 
+/*
+ankle constraint (30,-15)
+*/
 
 //Leg is init. leg moves the servoes
-int lLegAddress[5] = { 0, 1, 2, 3, 4 };
-int rLegAddress[5] = { 15, 14, 13, 12, 11 };
+int lLeg[5] = { 0, 1, 2, 3, 4 };
+int rLeg[5] = { 15, 14, 13, 12, 11 };
 
-Leg right = Leg(rLegAddress, RIGHT);
-Leg left = Leg(rLegAddress, LEFT);
+Leg right = Leg(rLeg, true);
+Leg left = Leg(lLeg, false);
 
 
 void setup() {
@@ -85,6 +91,7 @@ void loop()
 
 	int rLegTemp[5] = { 0 };
 	int lLegTemp[5] = { 0 };
+<<<<<<< HEAD
 
 	/*
 	for (int i = 0; i < 7; i++)
@@ -101,6 +108,9 @@ void loop()
 	left.leg(lLegTemp);
 	delay(500);
 	}*/
+=======
+	
+>>>>>>> parent of 26d346e... Added array copying and various functions consolidation AM
 	while (true) {
 		// check to see if there are enough bytes on the serial line for a message
 		if (Serial.available() >= messageLength)
