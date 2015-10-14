@@ -27,7 +27,7 @@ public:
   //Moves the servo up and down from 0. -90 would is down and 90 is up, all from netrual.
   void move(int pos);
   //Center the servo
-  void center() { move(0); }
+  void center();
 
   //Used to adjust the center of the servo and store that value
   void adjCenter(int r);    

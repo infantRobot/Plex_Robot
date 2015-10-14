@@ -1,9 +1,8 @@
-#include "Remote_Control.h"
-#include "Leg.h"
 #include "rServo.h"
 #include "routines.h"
 #include "Remote_Control.h"
-#include <LiquidCrystal\LiquidCrystal.h>
+#include "Leg.h"
+#include <LiquidCrystal.h>
 
 #include <Wire.h>
 #include "Adafruit_PWMServoDriver.h"
@@ -23,12 +22,12 @@
 
 
 
-Adafruit_PWMServoDriver driver = Adafruit_PWMServoDriver(0x40);
+Adafruit_PWMServoDriver driver = Adafruit_PWMServoDriver();
 
 LiquidCrystal lcd(RS_PIN, ENABLE_PIN, DB4_PIN, DB5_PIN, DB6_PIN, DB7_PIN);
 
 //Makes the servo line up better 
-int offSetList[16] = { -6,7,-6,4,0,5,6,7,8,9,10,2,-2,-2,-9,-9 };
+int offSetList[16] = { -2,7,-6,4,0,5,6,7,8,9,10,2,-2,-2,-3,-8 };
 
 //{footMin, footMax, shinMin, shingMax, ....., hipMin, hipMax}
 int hardLegLimits[5 * 2] = { -25, 15, -40, 80, -40, 80, -40, 80, -15, 70 };
@@ -36,23 +35,22 @@ int hardLegLimits[5 * 2] = { -25, 15, -40, 80, -40, 80, -40, 80, -15, 70 };
 int rightOffSetList[10] = { -25, 15, -40, 80, -80, 45, -40, 80, -15, 70 };
 int leftOffSetList[10] = { -25, 15, -40, 80, -80, 45, -40, 80, -15, 70 };
 
-//Pointer to the two walking routines for each leg
-int *routine[2] = { rWalk, lWalk };
 
 //Useful for setting leg to center
-int ZERO_A[5] = { 0 };
+int ZERO_A[5] = { 0, 0, 0, 0, 0 };
 
 /*
 ankle constraint (30,-15)
 */
 
 //Leg is init. leg moves the servoes
-int lLeg[5] = { 0, 1, 2, 3, 4 };
-int rLeg[5] = { 15, 14, 13, 12, 11 };
+int lLegAddress[5] = { 0, 1, 2, 3, 4 };
+int rLegAddress[5] = { 15, 14, 13, 12, 11 };
 
-Leg right = Leg(rLeg, true);
-Leg left = Leg(lLeg, false);
+Leg right = Leg(rLegAddress, true);
+Leg left = Leg(lLegAddress, false);
 
+rServo serv;
 
 void setup() {
 
@@ -62,22 +60,25 @@ void setup() {
 
 	// I2C Output enable
 	pinMode(17, OUTPUT);
-	digitalWrite(17, LOW);
+	digitalWrite(17, HIGH);
 	
 	//initiate the 16 Channel shield
 	driver.begin();
+	driver.reset();
 	driver.setPWMFreq(60);
+
+	digitalWrite(17, LOW);
+	for (int i = 0; i < 16; i++) {
+		driver.setPWM(i, 0, pulse(100));
+	}
+	driver.setPWM(2, 0, 180);
+	right.leg(ZERO_A);
+	left.leg(ZERO_A);
+	delay(500);
 
 	//Initiate LCD
 	lcd.begin(8, 2);
 	lcd.print("PLEX BOT");
-
-	//int tester[5] = { 15, -30, -25, 15, 15};
-	//int tester2[5] = { 15, -30, -25, 15, 15 };
-
-	right.leg(ZERO_A);
-	left.leg(ZERO_A);
-	delay(1000);
 
 	EstablishConnection();
 }
@@ -91,7 +92,7 @@ void loop()
 
 	int rLegTemp[5] = { 0 };
 	int lLegTemp[5] = { 0 };
-<<<<<<< HEAD
+
 
 	/*
 	for (int i = 0; i < 7; i++)
@@ -108,9 +109,7 @@ void loop()
 	left.leg(lLegTemp);
 	delay(500);
 	}*/
-=======
-	
->>>>>>> parent of 26d346e... Added array copying and various functions consolidation AM
+
 	while (true) {
 		// check to see if there are enough bytes on the serial line for a message
 		if (Serial.available() >= messageLength)
@@ -126,4 +125,10 @@ void loop()
 	}
 	
 	
+}
+
+
+int pulse(int degree)
+{
+	return map(70, 0, 180, 115, 560);
 }

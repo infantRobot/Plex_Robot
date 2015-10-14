@@ -2,11 +2,8 @@
 // 
 // 
 #include "Remote_Control.h"
-#include "LiquidCrystal.h"
 
 #define B0111111111111111 32767
-
-extern LiquidCrystal lcd;
 
 void EstablishConnection()
 {

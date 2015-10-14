@@ -20,6 +20,7 @@ void rServo::attach(int ServoNumber, int Offset, int _min, int _max)
 //Moves the servo up and down from 0. -90 would is down and 90 is up, all from netrual.
 void rServo::move(int pos)
 {
+	//Order Matters here!
   //Limit the angle before it gets to the funtion
   pos = limitPos(pos);
 
@@ -28,8 +29,6 @@ void rServo::move(int pos)
   {
     pos = -pos;
   }
-  
-  
   //Add the value of servoOffset to the position. 
   driver.setPWM(_servoAddress, 0, position(pos + _servoOffest));
 }

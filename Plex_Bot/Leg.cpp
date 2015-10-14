@@ -3,6 +3,8 @@
 // 
 
 #include "Leg.h"
+#include <LiquidCrystal.h>
+extern LiquidCrystal lcd;
 
 //Initializing call. Get offsets, limits, addresses.
 //Also inverts direction of the servos that need it.
@@ -12,7 +14,7 @@ Leg::Leg(int address[5] , bool rightL)
   _isRightLeg = rightL;
 
   int limitTemp[10];
-  
+  /*
   //Get the servo array adress
   copy(_servoAddresses, _servoAddresses + SERVOS/2, address);
 
@@ -23,13 +25,13 @@ Leg::Leg(int address[5] , bool rightL)
   }
   else {
     copy(limitTemp, limitTemp + SERVOS, leftOffSetList);
-  }
+  }*/
   
 
-  /*
+  
   for (int i = 0; i < 5; i++) {
     //Declare servo in order of foot to hip.
-    servoAddresses[i] = address[i];
+    _servoAddresses[i] = address[i];
   } 
   
   for (int i = 0; i < 10; i++) {
@@ -41,7 +43,7 @@ Leg::Leg(int address[5] , bool rightL)
       limitTemp[i] = leftOffSetList[i];
     }
   }
-  */
+  
   //Initalize the parts of the leg foot to hip again
   ankle.attach(_servoAddresses[0], offSetList[_servoAddresses[0]],limitTemp[0],limitTemp[1]);
   shin.attach(_servoAddresses[1], offSetList[_servoAddresses[1]], limitTemp[2], limitTemp[3]);
@@ -63,7 +65,6 @@ Leg::Leg(int address[5] , bool rightL)
     hip.reverseDirection();
   }
 
-
 }
 
 
@@ -77,7 +78,7 @@ void Leg::leg(int move[5])
   
 }
 
-void Leg::adjLeg(int adj[5])
+void Leg::adjLegCenter(int adj[5])
 {
   ankle.adjCenter(adj[1]);
   shin.adjCenter(adj[2]);
