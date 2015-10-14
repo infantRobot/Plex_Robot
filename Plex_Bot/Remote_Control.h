@@ -4,10 +4,12 @@
 #define _REMOTE_CONTROL_h
 
 #if defined(ARDUINO) && ARDUINO >= 100
-	#include "Arduino.h"
+  #include "Arduino.h"
 #else
-	#include "WProgram.h"
+  #include "WProgram.h"
 #endif
+
+
 const int numberOfServos = 12;
 const int messageLength = 3 + numberOfServos * 2;
 
