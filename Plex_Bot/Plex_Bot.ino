@@ -35,6 +35,12 @@ int hardLegLimits[5 * 2] = { -25, 15, -40, 80, -40, 80, -40, 80, -15, 70 };
 
 int rightOffSetList[10] = { -25, 15, -10, 10, -40, 80, -40, 80, -15, 70 };
 int leftOffSetList[10] = { -25, 15, -40, 80, -40, 80, -40, 80, -15, 70 };
+<<<<<<< HEAD
+=======
+
+//Pointer to the two walking routines for each leg
+int *routine[2] = { rWalk, lWalk };
+>>>>>>> parent of 8065548... Fixed limit position and servo offest bug! AM
 
 //Useful for setting leg to center
 int ZERO_A[5] = { 0,0,0,0,0 };
@@ -126,6 +132,9 @@ void loop()
 		left.leg(lLegTemp);
 
 		delay(500);
+<<<<<<< HEAD
+>>>>>>> parent of 8065548... Fixed limit position and servo offest bug! AM
+=======
 >>>>>>> parent of 8065548... Fixed limit position and servo offest bug! AM
 	}*/
 	while (true) {

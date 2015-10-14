@@ -70,6 +70,7 @@ void Leg::leg(int move[5])
 		hip.move(-move[4]);
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 
 }
@@ -82,6 +83,8 @@ void Leg::leg(int move[5])
 	knee.move(move[2]);
 	thigh.move(move[3]);
 	hip.move(move[4]);
+=======
+>>>>>>> parent of 8065548... Fixed limit position and servo offest bug! AM
 =======
 >>>>>>> parent of 8065548... Fixed limit position and servo offest bug! AM
 	
