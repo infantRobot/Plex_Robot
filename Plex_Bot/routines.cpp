@@ -1,6 +1,6 @@
 #include "routines.h"
-
-int rWalkRoutine[RWALKSTEPS*SERVOS] = {
+/*
+int temp[SERVOS*RWALKSTEPS]= {
 	//r_ankle r_shin r_knee	r_thigh	r_hip	 l_ankl	 l_shin	 l_knee	 l_thigh  l_hip
 	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,
 	10	,	0	,	0	,	0	,	-10	,	-10	,	0	,	0	,	0	,	10	,
@@ -19,10 +19,6 @@ int rWalkRoutine[RWALKSTEPS*SERVOS] = {
 	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,
 	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0	,	0
 };
+*/
+//copy(temp, temp +SERVOS*RWALKSTEPS, rWalkRoutine);
 
-int lWalkRoutine[LWALKSTEPS*SERVOS] = {
-	0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ,
-	0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ,
-	0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ,
-	0, 1, 2, 3, 4, 5, 6, 7, 8, 9
-};

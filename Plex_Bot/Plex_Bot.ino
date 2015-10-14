@@ -37,7 +37,7 @@ int rightOffSetList[10] = { -25, 15, -40, 80, -80, 45, -40, 80, -15, 70 };
 int leftOffSetList[10] = { -25, 15, -40, 80, -80, 45, -40, 80, -15, 70 };
 
 //Useful for setting leg to center
-int ZERO_A[5] = { 0 };
+int ZERO_A[5] = { 0,0,0,0,0 };
 
 
 //Leg is init. leg moves the servoes
@@ -45,7 +45,8 @@ int lLegAddress[5] = { 0, 1, 2, 3, 4 };
 int rLegAddress[5] = { 15, 14, 13, 12, 11 };
 
 Leg right = Leg(rLegAddress, RIGHT);
-Leg left = Leg(rLegAddress, LEFT);
+Leg left = Leg(lLegAddress, LEFT);
+rServo attempt;
 
 
 void setup() {
@@ -56,7 +57,7 @@ void setup() {
 
 	// I2C Output enable
 	pinMode(17, OUTPUT);
-	digitalWrite(17, LOW);
+	digitalWrite(17, HIGH);
 	
 	//initiate the 16 Channel shield
 	driver.begin();
@@ -68,10 +69,17 @@ void setup() {
 
 	//int tester[5] = { 15, -30, -25, 15, 15};
 	//int tester2[5] = { 15, -30, -25, 15, 15 };
+	digitalWrite(17, LOW);
 
-	right.leg(ZERO_A);
-	left.leg(ZERO_A);
-	delay(1000);
+	attempt.attach(2);
+
+	attempt.move(0);
+	/*
+		right.leg(ZERO_A);
+		left.leg(ZERO_A);
+		delay(1000);
+	*/
+	
 
 	EstablishConnection();
 }
