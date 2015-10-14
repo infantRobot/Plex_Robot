@@ -4,8 +4,8 @@
 */
 
 
-#ifndef _RSERVO_h
-#define _RSERVO_h
+#ifndef rServo_h
+#define rServo_h
 
 #include <Arduino.h>
 

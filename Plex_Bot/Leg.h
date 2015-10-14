@@ -9,8 +9,6 @@
 #endif
 
 #include "rServo.h"
-#include "routines.h"
-#include "Functions.h"
 
 //Read by the init funciton of the leg and offsets are automatic
 extern int offSetList[16];
@@ -27,10 +25,6 @@ public:
 	//leg is the movement cure for the class. therfore moving the right leg looks like
 	//right.leg(int move[5]);
 	void leg(int move[5]);
-
-	//Functions for playing the given routines
-	//first element of the array, array end element 
-	void routine(int *first, int *last);
 
 	//return leg to all center
 	//void center() { leg(int zero[5] = { 0 }); }
@@ -49,7 +43,7 @@ private:
 	//If you want each servo is public so you could ajust them one by one.
 	void adjLeg(int adj[5]);
 
-	int _servoAddresses[5];
+	int servoAddresses[5];
 
 	bool isRightLeg;
 };

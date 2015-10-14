@@ -54,6 +54,20 @@ void Leg::leg(int move[5])
 		thigh.move(-move[3]);
 		hip.move(-move[4]);
 	}
+<<<<<<< HEAD
+=======
+
+
+}
+
+void Leg::leg(int move[5])
+{
+	ankle.move(move[0]);
+	shin.move(move[1]);
+	knee.move(move[2]);
+	thigh.move(move[3]);
+	hip.move(move[4]);
+>>>>>>> parent of 26d346e... Added array copying and various functions consolidation AM
 	
 }
 
